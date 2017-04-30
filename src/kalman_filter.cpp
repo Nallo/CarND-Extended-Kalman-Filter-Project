@@ -56,6 +56,8 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   h << rho, theta, rho_dot;
 
   VectorXd y = z - h;
+  y(1) = adjustPhi(y(1));
+
   MatrixXd Ht = H_.transpose();
   MatrixXd S = H_ * P_ * Ht + R_;
   MatrixXd Si = S.inverse();
@@ -67,4 +69,14 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   long x_size = x_.size();
   MatrixXd I = MatrixXd::Identity(x_size, x_size);
   P_ = (I - K * H_) * P_;
+}
+
+float KalmanFilter::adjustPhi(float phi) {
+  float newPhi = phi;
+
+  while (newPhi > M_PI) {
+    newPhi -= 2 * M_PI;
+  }
+
+  return newPhi;
 }

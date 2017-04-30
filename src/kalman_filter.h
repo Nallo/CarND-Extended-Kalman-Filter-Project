@@ -64,6 +64,13 @@ public:
    */
   void UpdateEKF(const Eigen::VectorXd &z);
 
+private:
+  /**
+   * Adjusts the phi angle to ensure it is between -pi and +pi
+   * @param phi The angle to adjust
+   * @return The adjusted angle between -pi and +pi
+   */
+  float adjustPhi(float phi);
 };
 
 #endif /* KALMAN_FILTER_H_ */
