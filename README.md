@@ -3,6 +3,8 @@ Self-Driving Car Engineer Nanodegree Program
 
 ---
 
+![Kalman Tracker Image](img/kalman_tracker_screenshot.png)
+
 ## Dependencies
 
 * cmake >= 3.5
